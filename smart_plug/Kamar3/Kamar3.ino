@@ -41,27 +41,6 @@ void setup()
 
 void loop()
 {
-  emon.voltage(13, vCalibration, 1.7);
-  emon.calcVI(20, 2000);
-  float supplyVoltage   = emon.Vrms * 10;
-  Serial.print("V1 = ");
-  Serial.println(supplyVoltage);
-  Firebase.setFloat(fbdo, "/Tegangan/Voltase7", supplyVoltage) ? "ok" : fbdo.errorReason().c_str();
-
-  emon.voltage(12, vCalibration, 1.7);
-  emon.calcVI(20, 2000);
-  supplyVoltage   = emon.Vrms * 10;
-  Serial.print("V2 = ");
-  Serial.println(supplyVoltage);
-  Firebase.setFloat(fbdo, "/Tegangan/Voltase8", supplyVoltage) ? "ok" : fbdo.errorReason().c_str();
-  
-  emon.voltage(14, vCalibration, 1.7);
-  emon.calcVI(20, 2000);
-  supplyVoltage   = emon.Vrms * 10;
-  Serial.print("V3 = ");
-  Serial.println(supplyVoltage);
-  Firebase.setFloat(fbdo, "/Tegangan/Voltase9", supplyVoltage) ? "ok" : fbdo.errorReason().c_str();
-
   if (Firebase.getString(fbdo, "Relay/r7"))
   {
     Serial.print("Get int data A success, str = ");
@@ -110,4 +89,25 @@ void loop()
     Serial.print("Error in getString, ");
     Serial.println(fbdo.errorReason());
   }
+  
+  emon.voltage(13, vCalibration, 1.7);
+  emon.calcVI(20, 2000);
+  float supplyVoltage   = emon.Vrms * 10;
+  Serial.print("V1 = ");
+  Serial.println(supplyVoltage);
+  Firebase.setFloat(fbdo, "/Tegangan/Voltase7", supplyVoltage) ? "ok" : fbdo.errorReason().c_str();
+
+  emon.voltage(12, vCalibration, 1.7);
+  emon.calcVI(20, 2000);
+  supplyVoltage   = emon.Vrms * 10;
+  Serial.print("V2 = ");
+  Serial.println(supplyVoltage);
+  Firebase.setFloat(fbdo, "/Tegangan/Voltase8", supplyVoltage) ? "ok" : fbdo.errorReason().c_str();
+  
+  emon.voltage(14, vCalibration, 1.7);
+  emon.calcVI(20, 2000);
+  supplyVoltage   = emon.Vrms * 10;
+  Serial.print("V3 = ");
+  Serial.println(supplyVoltage);
+  Firebase.setFloat(fbdo, "/Tegangan/Voltase9", supplyVoltage) ? "ok" : fbdo.errorReason().c_str();
 }
